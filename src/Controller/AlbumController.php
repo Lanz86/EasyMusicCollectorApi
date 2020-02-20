@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\DTOs\AlbumInputDTO;
 use App\DTOs\PagedResultDTO;
+use App\DTOs\ProvaDTO;
 use App\Entity\Album;
 use App\Entity\Artist;
 use App\Repository\AlbumRepository;
