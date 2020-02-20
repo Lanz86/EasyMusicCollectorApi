@@ -24,8 +24,8 @@ class ArtistRepository extends ServiceEntityRepository
     }
 
     public function getByIds(array $ids) {
-        $query = $this->_manager->createQuery('SELECT a FROM APP\Entity\Artist a WHERE a.id IN (:ids)')
-            ->setParameter('ids', $ids);
+        $query = $this->_manager->createQuery('SELECT a FROM APP\Entity\Artist a WHERE a.id IN (3)');
+            //->setParameter('ids', $ids);
         return $query->execute();
     }
 

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Genere;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @method Genere|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +15,16 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class GenereRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $_manager;
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, Genere::class);
+        $this->_manager = $manager;
+    }
+
+    public function getByIds($ids) {
+        return $this->_manager->createQuery('SELECT g FROM App\Entity\Genere WHERE g.id IN (:ids)')
+            ->setParameter('ids', $ids)->execute();
     }
 
     // /**

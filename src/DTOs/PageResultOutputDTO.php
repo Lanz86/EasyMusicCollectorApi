@@ -4,7 +4,7 @@
 namespace App\DTOs;
 
 
-class PagedResultDTO
+class PageResultOutputDTO
 {
     public function __construct($page, $limit, $count, $data)
     {

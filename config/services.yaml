@@ -31,3 +31,7 @@ services:
     App\RequestDTOResolver:
         tags:
             - { name: controller.request_value_resolver, priority: 50 }
+
+    demo.automapper_configurator:
+          class: App\AutoMapperConfig
+          tags: ['automapper_plus.configurator']

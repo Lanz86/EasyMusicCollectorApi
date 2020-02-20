@@ -30,6 +30,8 @@ class ArtistController extends AbstractController
 
     /**
      * @Route("/artists/{id}", name="get_artist_by_id", methods={"GET"})
+     * @param int $id
+     * @return JsonResponse
      */
     public function get($id) : JsonResponse
     {

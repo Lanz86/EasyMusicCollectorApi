@@ -30,9 +30,14 @@ class AlbumRepository extends ServiceEntityRepository
                 ->setFirstResult($limit * ($page - 1));
 
         $paginator = new Paginator($query);
-        $c = $paginator;
-
         return $paginator->getIterator();
+    }
+
+
+
+    public function delete(Album $album) {
+        $this->_manager->remove($album);
+        $this->_manager->flush();
     }
 
     public function save(Album $album) {

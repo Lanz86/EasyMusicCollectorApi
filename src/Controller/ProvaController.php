@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 
 
-class ProvaController extends BaseWebApiController
+class ProvaController extends BaseController
 {
     //private $_serializer;
     public function __construct(SerializerInterface $serializer)
