@@ -5,15 +5,12 @@ namespace App\DTOs;
 
 class AlbumOutputDTO
 {
-    public function __construct($name, $cover, $year, $artists)
+    public function __construct()
     {
-        $this->name = $name;
-        $this->cover = $cover;
-        $this->year = $year;
-        $this->artists = $artists;
+
     }
 
-    private $name;
+    public $name;
     private $cover;
     private $year;
     private $artists;
