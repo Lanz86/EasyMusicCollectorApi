@@ -41,6 +41,13 @@ class AlbumController extends BaseController
     }
 
     /**
+     * @Route("/albums/{id}/", name="get_album", methods={"GET"})
+     */
+    public function getAlbum($id) {
+        return $this->jsonOk($this->_albumService->getAlbum($id));
+    }
+
+    /**
      * @Route("/albums/", name="add_album", methods={"POST"})
      * @param AlbumCreateInputDTO $album
      */

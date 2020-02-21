@@ -6,6 +6,7 @@ use App\Entity\Album;
 use App\Entity\Artist;
 use AutoMapperPlus\AutoMapperPlusBundle\AutoMapperConfiguratorInterface;
 use AutoMapperPlus\Configuration\AutoMapperConfigInterface;
+use Doctrine\ORM\Mapping\Entity;
 
 class AutoMapperConfig implements AutoMapperConfiguratorInterface
 {
@@ -22,6 +23,18 @@ class AutoMapperConfig implements AutoMapperConfiguratorInterface
                 yield ["id" => $item->getId(), "name" => $item->getName()];
             }
         });
+
+        $config->registerMapping(\App\Entity\Album::class, \App\DTOs\AlbumOutputDTO::class)
+            ->forMember('artists', function(Album $album) {
+                foreach ($album->getArtists() as $item) {
+                    yield ["id" => $item->getId(), "name" => $item->getName()];
+                }
+            })
+            ->forMember('genres', function (Album $album) {
+                foreach ($album->getGeneres() as $item) {
+                    yield ["id" => $item->getId(), "name" => $item->getName()];
+                }
+            });
 
         // And so on..
     }

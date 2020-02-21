@@ -47,9 +47,10 @@ class AlbumService
         return new PageResultOutputDTO($page, $limit, $numberOfElement, $albums);
     }
 
-    /*public function getAlbum($id) {
-
-    }*/
+    public function getAlbum($id) {
+        $album = $this->_albumRepository->findOneBy(['id' => $id]);
+        return $this->_mapper->map($album, AlbumOutputDTO::class);
+    }
 
     public function createAlbum(AlbumCreateInputDTO $albumCreateInputDTO)
     {
