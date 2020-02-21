@@ -66,7 +66,7 @@ class AlbumController extends BaseController
     }
 
     /**
-     * @Route("/albums/{id}", name="update_album", methods={"DELETE"})
+     * @Route("/albums/{id}", name="delete_album", methods={"DELETE"})
      */
     function deleteAlbum($id) {
         $this->_albumService->deleteAlbum($id);

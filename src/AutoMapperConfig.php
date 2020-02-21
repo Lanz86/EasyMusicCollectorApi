@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\DTOs\ArtistOutputDTO;
 use App\Entity\Album;
 use App\Entity\Artist;
 use AutoMapperPlus\AutoMapperPlusBundle\AutoMapperConfiguratorInterface;
@@ -36,6 +37,7 @@ class AutoMapperConfig implements AutoMapperConfiguratorInterface
                 }
             });
 
+            $config->registerMapping(Artist::class, ArtistOutputDTO::class);
         // And so on..
     }
 }

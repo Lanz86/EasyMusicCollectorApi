@@ -4,20 +4,25 @@
 namespace App\Service;
 
 
+use App\DTOs\ArtistOutputDTO;
 use App\Entity\Artist;
 use App\Repository\ArtistRepository;
+use AutoMapperPlus\AutoMapperInterface;
 
 class ArtistService
 {
     private $_artistRepository;
-
-    public function __construct(ArtistRepository $artistRepository)
+    private $_mapper;
+    public function __construct(ArtistRepository $artistRepository, AutoMapperInterface $mapper)
     {
         $this->_artistRepository = $artistRepository;
+        $this->_mapper = $mapper;
     }
 
-    public function getAll() {
-        return $this->_artistRepository->findAll();
+    public function getAllArtists() {
+        $artists = $this->_artistRepository->findAll();
+        $artistsDto = $this->_mapper->mapMultiple($artists, ArtistOutputDTO::class);
+        return $artistsDto;
     }
 
     public function getById(int $id) {

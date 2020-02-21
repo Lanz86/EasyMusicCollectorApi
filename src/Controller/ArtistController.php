@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ArtistController extends AbstractController
+class ArtistController extends BaseController
 {
     private $_artistService;
 
@@ -23,9 +23,10 @@ class ArtistController extends AbstractController
     /**
      * @Route("/artists/", name="get_artist", methods={"GET"})
      */
-    public function getAll() : JsonResponse
+    public function getAllArtists() : JsonResponse
     {
-        return $this->json($this->_artistService->getAll(), Response::HTTP_OK);
+
+        return $this->jsonOk($this->_artistService->getAllArtists());
     }
 
     /**
