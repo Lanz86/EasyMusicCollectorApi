@@ -25,7 +25,6 @@ class ArtistController extends BaseController
      */
     public function getAllArtists() : JsonResponse
     {
-
         return $this->jsonOk($this->_artistService->getAllArtists());
     }
 

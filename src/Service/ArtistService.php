@@ -29,10 +29,6 @@ class ArtistService
         return $this->_artistRepository->findOneBy(['id' => $id]);
     }
 
-    public function getByIds(array $ids) {
-        return $this->_artistRepository->getByIds($ids);
-    }
-
     public function createArtist($name)
     {
         $artist = new Artist();

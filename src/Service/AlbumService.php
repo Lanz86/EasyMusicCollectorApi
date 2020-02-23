@@ -62,14 +62,14 @@ class AlbumService
 
         if($albumCreateInputDTO->artists !== null && count($albumCreateInputDTO->artists) > 0)
         {
-            $artists = $this->_artistRepository->getByIds(array_values($albumCreateInputDTO->artists));
+            $artists = $this->_artistRepository->findBy(["id" => array_values($albumCreateInputDTO->artists)]);
             foreach ($artists as $artist) {
                 $album->addArtist($artist);
             }
         }
 
         if($albumCreateInputDTO->generes !== null && count($albumCreateInputDTO->generes) > 0) {
-            $genres = $this->_genreRepository->getByIds(array_values($albumCreateInputDTO->generes));
+            $genres = $this->_genreRepository->findBy(["id" => array_values($albumCreateInputDTO->generes)]);
             foreach ($genres as $genre) {
                 $album->addGenere($genre);
             }

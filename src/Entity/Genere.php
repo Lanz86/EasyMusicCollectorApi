@@ -28,6 +28,11 @@ class Genere
      */
     private $albums;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $code;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
@@ -74,6 +79,18 @@ class Genere
             $this->albums->removeElement($album);
             $album->removeGenere($this);
         }
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
 
         return $this;
     }

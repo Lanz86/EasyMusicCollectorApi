@@ -27,6 +27,16 @@ class GenereRepository extends ServiceEntityRepository
             ->setParameter('ids', $ids)->execute();
     }
 
+    public function deleteGenre($genre) {
+        $this->_manager->remove($genre);
+        $this->_manager->flush();
+    }
+
+    public function save($manager) {
+        $this->_manager->persist($manager);
+        $this->_manager->flush();
+    }
+
     // /**
     //  * @return Genere[] Returns an array of Genere objects
     //  */
