@@ -16,5 +16,6 @@ class GenresControllerTest extends WebTestCase
         $response = $client->getResponse();
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals(149, count(json_decode($response->getContent())));
+        $this->assertPostConditions("Pop", json_decode($response->getContent()[13]->getName()));
     }
 }
