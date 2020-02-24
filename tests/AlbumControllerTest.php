@@ -31,21 +31,36 @@ class AlbumControllerTest extends WebTestCase
 
     public function testCreateAlbum() {
         $client = static::createClient();
-        $response = $client->request('POST', '/albums/', [
-            'json' => ['name' => 'Madonna',
-                        'artists' => [2],
-                        'year' => '1986',
-                        'generes' => [14],
-                        'type' => 1,
-                        'support' => 1],
-        ]);
+        $client->request('POST', '/albums/',
+            array(),
+            array(),
+            array('CONTENT_TYPE' => 'application/json'),
+            ['body' => '{"name":"Madonna","artists":[2],"year":"1986","generes":[14],"type":1,"support":1}']
+        );
 
-        ///var_dump($response);
+        /*$response = $client->getResponse();
+        $this->assertEquals(200, $response->getStatusCode());*/
 
-        //$this->assertEquals(201, $response->getStatusCode());
     }
 
-    //updateAlbum
+    public function testUpdateAlbum() {
+        $client = static::createClient();
+        $client->request('PUT', '/albums/1',
+            ['body' => '{"name":"Madonna","artists":[2],"year":"1986","generes":[14],"type":1,"support":1}',
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ]
+            ]);
 
-    //deleteAlbum*/
+        $response = $client->getResponse();
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function testDeleteAlbum() {
+        $client = static::createClient();
+        $client->request('DELETE', '/albums/1');
+
+        $response = $client->getResponse();
+        $this->assertEquals(204, $response->getStatusCode());
+    }
 }
